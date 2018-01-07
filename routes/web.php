@@ -38,5 +38,8 @@ Route::get('footerpages/about','FooterController@about')->name('footerpages.abou
 Route::get('footerpages/contact','FooterController@contact')->name('footerpages.contact');
 Route::get('footerpages/privacy','FooterController@privacy')->name('footerpages.privacy');
 
+Route::resource('abbs','AbbController');
+Route::get('abbs', 'AbbControler@index')->name('myaccount');
+
 //Da home ikke kunne findes som navn flyttede jeg linien herned og så virkede name pludselig. Før stod den på linie 19.
 Route::get('/home', 'HomeController@index')->name('home');
