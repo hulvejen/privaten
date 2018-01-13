@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\Schedule;
 use App\User;
+use App\Abbinfo;
 
 use Auth;
 
@@ -28,11 +29,17 @@ class HomeController extends Controller
      */
     public function index()
     {	   
-				
+		
 		$users = User::where('id', '=', Auth::id())->paginate(1);
 		
 		$tasks = Task::where('user_id','=', Auth::id())->paginate(2);	
 		$schedules = Schedule::where('user_id','=', Auth::id())->paginate(1);
+				
+		if (strlen($users[0]->phone) < 8 ){
+			
+			return  view('abbs.edit')->with('users',$users);
+		};
+		
 		
 		// Show the view and pass the record to view
 		return view('home')->with('tasks',$tasks)->with('schedules',$schedules)->with('users',$users);

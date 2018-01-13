@@ -7713,3 +7713,7 @@ button.close {
 		display: none!important
 	}
 }
+
+.btn-color {
+	color: cornsilk;
+}

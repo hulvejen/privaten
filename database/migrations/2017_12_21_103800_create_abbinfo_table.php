@@ -13,15 +13,19 @@ class CreateAbbinfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('abbinfo', function (Blueprint $table) {
+        Schema::create('abbinfos', function (Blueprint $table) {
             $table->increments('id');
 			
-			$table->integer('user_id')->unsigned();	
+			// Foreign key
+			$table->integer('user_id')->unsigned();
+			
 			$table->integer('abb_date')->date();
 			
 			$table->string('year_rest')->nullable()->unsigned()->change();
 			$table->date('next_scheduled_date');
 			$table->boolean('payed')->default(false);
+			
+			$table->foreign('user_id')->references('id')->on('users');
 			
 			$table->timestamps();
         });

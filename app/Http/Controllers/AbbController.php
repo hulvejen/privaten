@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AbbControler extends Controller
+use App\Abbinfo;
+use App\User;
+use Auth;
+
+class AbbController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +27,7 @@ class AbbControler extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +38,8 @@ class AbbControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+		
     }
 
     /**
@@ -56,7 +61,7 @@ class AbbControler extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('abbs.edit');
     }
 
     /**
@@ -68,7 +73,27 @@ class AbbControler extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		
+        // validate the form data
+		/*$this->validate($request,[
+			'address' => 'required|max:2'					
+		]);*/
+		
+		// process the data and submit it
+		$user = User::find($id);
+		$user->address = $request->address;
+		$user->zipcode = $request->zipcode;
+		$user->city    = $request->city;
+		$user->phone   = $request->phone;
+			
+				
+		//if successful we want to redirect
+		if($user->save()) {		
+			return redirect()->route('myaccount', $user->id);			
+		}else{
+			return 2;
+			return redirect()->route('abbs.create');
+		}
     }
 
     /**
@@ -79,6 +104,6 @@ class AbbControler extends Controller
      */
     public function destroy($id)
     {
-        //
+  
     }
 }
