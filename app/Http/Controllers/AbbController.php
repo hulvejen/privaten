@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 use App\Abbinfo;
 use App\User;
 use Auth;
@@ -17,7 +18,7 @@ class AbbController extends Controller
      */
     public function index()
     {
-        return view('abbs.index');
+
     }
 
     /**
@@ -50,7 +51,17 @@ class AbbController extends Controller
      */
     public function show($id)
     {
-        //
+      	$user    = User::findOrFail($id);	
+		$abbinfo = Abbinfo::where('user_id', '=', $id)->get();	
+		
+		$abbdate = Carbon::createFromFormat('Y-m-d', $abbinfo[0]->abb_date)->formatLocalized('%d-%m-%Y');	
+		$abbinfo[0]->abb_date = $abbdate;
+		
+		$abbdate = Carbon::createFromFormat('Y-m-d', $abbinfo[0]->next_scheduled_date)->formatLocalized('%d-%m-%Y');	
+		$abbinfo[0]->next_scheduled_date = $abbdate;
+		
+		// Show the view and pass the record to view		
+        return view('abbs.show')->with('user',$user)->with('abbinfo',$abbinfo);
     }
 
     /**
@@ -61,7 +72,9 @@ class AbbController extends Controller
      */
     public function edit($id)
     {
-        return view('abbs.edit');
+		$users = User::where('id', '=', Auth::id())->paginate(1);	
+		
+        return view('abbs.edit')->with('users',$users);
     }
 
     /**

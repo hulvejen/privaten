@@ -1,11 +1,13 @@
 @extends('layouts.app') @section('content')
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 ">
 			<div class="panel panel-default">
 								
 				@foreach($users as $user)
-				   <div class="panel-heading">Velkommen {{ $user->name}}  </div>
+				   <div class="panel-heading">Velkommen {{ $user->name }}  </div>
 				@endforeach
 
 				<div class="panel-body">
@@ -14,10 +16,15 @@
 						{{ session('status') }}
 					</div>
 					@endif
+					<div class="row">
+						<div class="col-sm-12 ">
+							<h4>Næste aftale - {{ $abbinfo[0]->next_scheduled_date }} kl  </h4>
+						</div>
+					</div>
 					
 
 					<div class="row">
-						<div class="col-sm-6 ">
+						<div class="col-sm-6 ">							
 							<h3>Opret ny opgave</h3>
 							<a href="{{ route('tasks.create') }}" class="btn btn-info" role="button">Ny Opgave</a>
 						</div>

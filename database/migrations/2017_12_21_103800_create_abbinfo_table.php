@@ -19,10 +19,11 @@ class CreateAbbinfoTable extends Migration
 			// Foreign key
 			$table->integer('user_id')->unsigned();
 			
-			$table->integer('abb_date')->date();
+			$table->date('abb_date')->format('d.m.Y');
+			$table->time('time');
 			
 			$table->string('year_rest')->nullable()->unsigned()->change();
-			$table->date('next_scheduled_date');
+			$table->date('next_scheduled_date')->format('d.m.Y');
 			$table->boolean('payed')->default(false);
 			
 			$table->foreign('user_id')->references('id')->on('users');
