@@ -35,20 +35,23 @@ class HomeController extends Controller
 		
 		$tasks     = Task::where('user_id','=', Auth::id())->paginate(2);	
 		$schedules = Schedule::where('user_id','=', Auth::id())->paginate(1);
-		$abbinfo   = Abbinfo::where('user_id','=', Auth::id())->paginate(1);
-	 	
-
-		//Chanhe of database format to our format
-        $abbdate = Carbon::createFromFormat('Y-m-d', $abbinfo[0]->abb_date)->formatLocalized('%d-%m-%Y');	
-		$abbinfo[0]->abb_date = $abbdate;
-		
-		$abbdate = Carbon::createFromFormat('Y-m-d', $abbinfo[0]->next_scheduled_date)->formatLocalized('%d-%m-%Y');	
-		$abbinfo[0]->next_scheduled_date = $abbdate;
-				
+						
 		if (strlen($users[0]->phone) < 8 ){
 			
 			return  view('abbs.edit')->with('users',$users);
 		};
+		
+		$abbinfo   = Abbinfo::where('user_id','=', Auth::id())->paginate(1);
+	 	
+
+		//Chanhe of database format to our format
+		
+        $abbdate = Carbon::createFromFormat('Y-m-d', $abbinfo[0]->abb_date)->formatLocalized('%d-%m-%Y');	
+		$abbinfo[0]->abb_date = $abbdate;
+		
+		
+		$abbdate = Carbon::createFromFormat('Y-m-d', $abbinfo[0]->next_scheduled_date)->formatLocalized('%d-%m-%Y');	
+		$abbinfo[0]->next_scheduled_date = $abbdate;
 		
 		
 		// Show the view and pass the record to view

@@ -39,7 +39,6 @@ class AbbController extends Controller
      */
     public function store(Request $request)
     {
-
 		
     }
 
@@ -94,17 +93,18 @@ class AbbController extends Controller
 		
 		// process the data and submit it
 		$user = User::find($id);
+		
 		$user->address = $request->address;
 		$user->zipcode = $request->zipcode;
 		$user->city    = $request->city;
 		$user->phone   = $request->phone;
 			
-				
+		$user->save();
+		
 		//if successful we want to redirect
 		if($user->save()) {		
 			return redirect()->route('myaccount', $user->id);			
-		}else{
-			return 2;
+		}else{			
 			return redirect()->route('abbs.create');
 		}
     }
