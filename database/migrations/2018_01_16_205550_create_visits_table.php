@@ -18,9 +18,12 @@ class CreateVisitsTable extends Migration
 			// Foreign key
 			$table->integer('handymen_id')->unsigned();
 			
+			
             $table->timestamps();
-			$table->text('job')->nullable();
-			$table->date('date')->nullable();
+			$table->text('jobcomment')->nullable();
+			$table->date('visitdate')->nullable();
+			$table->boolean('done')->nullable();
+			
 						
 			$table->foreign('handymen_id')->references('id')->on('handymen');
 			

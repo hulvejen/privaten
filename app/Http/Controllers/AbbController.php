@@ -11,6 +11,17 @@ use Auth;
 
 class AbbController extends Controller
 {
+	
+	 /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
     /**
      * Display a listing of the resource.
      *
@@ -39,6 +50,13 @@ class AbbController extends Controller
      */
     public function store(Request $request)
     {
+		 // validate the form data
+		/*$this->validate($request,[
+			'address' => 'required|max:2'					
+		]);*/
+		
+		// process the data and submit it
+				
 		
     }
 
@@ -91,6 +109,19 @@ class AbbController extends Controller
 			'address' => 'required|max:2'					
 		]);*/
 		
+		$abbinfo = Abbinfo::where('user_id',$id)->first();
+		
+		if(!$abbinfo){
+			$abbinfo = new Abbinfo();
+			
+			$abbinfo->user_id  = $id;
+			$abbinfo->abb_date = '2000-01-01';
+			$abbinfo->time     = '00:00:00';
+			$abbinfo->next_scheduled_date = '2000-01-01';
+
+			$abbinfo->save();
+		}
+		
 		// process the data and submit it
 		$user = User::find($id);
 		
@@ -99,7 +130,8 @@ class AbbController extends Controller
 		$user->city    = $request->city;
 		$user->phone   = $request->phone;
 			
-		$user->save();
+		$user->save();	
+		
 		
 		//if successful we want to redirect
 		if($user->save()) {		
