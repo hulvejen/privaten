@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class VisitsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([
-			 HandymenSeeder::class,
-			 VisitsSeeder::class,
-			 ]);		 
+        DB::table('visits')->insert([
+			'handymen_id' => '1',
+		]);
     }
 }

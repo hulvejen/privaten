@@ -69,6 +69,16 @@ class AbbController extends Controller
 		$abbinfo->city    = $request->city;
 		$abbinfo->phone   = $request->phone;
 		
+		$abbinfo->phone   = $request->phone;
+		
+		//if successful we want to redirect
+		if($abbinfo->save()) {		
+			return redirect()->route('myaccount', $abbinfo->id);			
+		}else{			
+			return redirect()->route('abbs.create');
+		}
+		
+		
 		//if successful we want to redirect
 		if($abbinfo->save()) {		
 			return redirect()->route('myaccount', $abbinfo->id);			
