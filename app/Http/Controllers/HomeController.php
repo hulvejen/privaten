@@ -35,10 +35,12 @@ class HomeController extends Controller
 		
 		$tasks     = Task::where('user_id','=', Auth::id())->paginate(2);	
 		$schedules = Schedule::where('user_id','=', Auth::id())->paginate(1);
-						
-		if (strlen($users[0]->phone) < 8 ){
+		
+		$abbinfo   = Abbinfo::where('user_id','=', Auth::id())->paginate(1);
 			
-			return  view('abbs.edit')->with('users',$users);
+		if (is_null($abbinfo[0])){
+			
+			return  view('abbs.store')->with('users',$users);
 		};
 		
 		$abbinfo   = Abbinfo::where('user_id','=', Auth::id())->paginate(1);

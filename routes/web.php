@@ -39,7 +39,8 @@ Route::get('footerpages/contact','FooterController@contact')->name('footerpages.
 Route::get('footerpages/privacy','FooterController@privacy')->name('footerpages.privacy');
 
 
-Route::put('abbs/{id}', 'Abbcontroller@update')->name('abbsupdate');
+Route::put('abbs/update/{id}', 'Abbcontroller@update')->name('abbsupdate');
+Route::put('abbs/store/{id}', 'Abbcontroller@store')->name('abbsstore');
 Route::get('abbs/edit/{id}', 'AbbController@edit')->name('xyz');
 Route::get('abbs/{id}', 'AbbController@show')->name('myaccount');
 

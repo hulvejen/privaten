@@ -18,13 +18,13 @@ class CreateHandymenTable extends Migration
             $table->timestamps();
 			
 			$table->string('name');
-			$table->string('address');
-			$table->string('zip');
-			$table->string('city');
+			$table->string('address')->nullable();
+			$table->string('zip')->nullable();
+			$table->string('city')->nullable();
 			
-			$table->string('phone');
+			$table->string('phone')->nullable();
 			
-			$table->text('about');
+			$table->text('about')->nullable();
 			
         });
     }

@@ -19,14 +19,6 @@ public function up()
         $table->string('email')->unique();
         $table->string('password');
 		
-		$table->string('phone')->nullable();
-		$table->string('address')->nullable();
-		$table->string('zipcode')->nullable();
-		$table->string('city')->nullable();
-		
-		
-		$table->enum('customerType',['private','handyman','admin'])->default('private');  //True Handyman login False Customer login
-
         $table->string('avatar')->nullable();
         $table->string('provider', 20)->nullable();
         $table->string('provider_id')->nullable();

@@ -16,6 +16,15 @@ class CreateAbbinfoTable extends Migration
         Schema::create('abbinfos', function (Blueprint $table) {
             $table->increments('id');
 			
+			
+			$table->string('phone')->nullable();
+			$table->string('address')->nullable();
+			$table->string('zipcode')->nullable();
+			$table->string('city')->nullable();
+		
+		
+			$table->enum('customerType',['private','handyman','admin'])->default('private');  //True Handyman login False Customer login
+			
 			// Foreign key
 			$table->integer('user_id')->unsigned();
 			

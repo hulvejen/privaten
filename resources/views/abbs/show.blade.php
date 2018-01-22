@@ -11,10 +11,10 @@
 							<div class="col-sm-6 ">
 								<h3>Adresse oplysninger</h3>
 								<p>{{$user->name}}</p>
-								<p>{{$user->address}}</p>
-								<p>{{$user->zipcode. " " . $user->city}}</p>
-								<p>{{$user->email}}</p>
-								<p>Mobil {{$user->phone}}</p>
+								<p>{{$abbinfo[0]->address}}</p>
+								<p>{{$abbinfo[0]->zipcode. " " . $abbinfo[0]->city}}</p>
+								<p>{{$abbinfo[0]->email}}</p>
+								<p>Mobil {{$abbinfo[0]->phone}}</p>
 							</div>
 							<div class="col-sm-6 text-left">
 								<h3>Abonnement</h3>

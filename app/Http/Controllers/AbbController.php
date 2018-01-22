@@ -48,7 +48,7 @@ class AbbController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$user_id)
     {
 		 // validate the form data
 		/*$this->validate($request,[
@@ -56,6 +56,25 @@ class AbbController extends Controller
 		]);*/
 		
 		// process the data and submit it
+		
+		$abbinfo = new Abbinfo();
+
+		$abbinfo->user_id  = $user_id;
+		$abbinfo->abb_date = '2000-01-01';
+		$abbinfo->time     = '00:00:00';
+		$abbinfo->next_scheduled_date = '2000-01-01';
+		
+		$abbinfo->address = $request->address;
+		$abbinfo->zipcode = $request->zipcode;
+		$abbinfo->city    = $request->city;
+		$abbinfo->phone   = $request->phone;
+		
+		//if successful we want to redirect
+		if($abbinfo->save()) {		
+			return redirect()->route('myaccount', $abbinfo->id);			
+		}else{			
+			return redirect()->route('abbs.create');
+		}
 				
 		
     }
@@ -108,36 +127,25 @@ class AbbController extends Controller
 		/*$this->validate($request,[
 			'address' => 'required|max:2'					
 		]);*/
-		
-		$abbinfo = Abbinfo::where('user_id',$id)->first();
-		
-		if(!$abbinfo){
-			$abbinfo = new Abbinfo();
 			
-			$abbinfo->user_id  = $id;
-			$abbinfo->abb_date = '2000-01-01';
-			$abbinfo->time     = '00:00:00';
-			$abbinfo->next_scheduled_date = '2000-01-01';
 
-			$abbinfo->save();
-		}
+		$abbinfo =  Abbinfo::find($id);
+
+		$abbinfo->user_id  = $id;
+		$abbinfo->abb_date = '2000-01-01';
+		$abbinfo->time     = '00:00:00';
+		$abbinfo->next_scheduled_date = '2000-01-01';
 		
-		// process the data and submit it
-		$user = User::find($id);
-		
-		$user->address = $request->address;
-		$user->zipcode = $request->zipcode;
-		$user->city    = $request->city;
-		$user->phone   = $request->phone;
-			
-		$user->save();	
-		
+		$abbinfo->address = $request->address;
+		$abbinfo->zipcode = $request->zipcode;
+		$abbinfo->city    = $request->city;
+		$abbinfo->phone   = $request->phone;
 		
 		//if successful we want to redirect
-		if($user->save()) {		
-			return redirect()->route('myaccount', $user->id);			
+		if($abbinfo->save()) {		
+			return redirect()->route('myaccount', $abbinfo->user_id);			
 		}else{			
-			return redirect()->route('abbs.create');
+			return redirect()->route('abbsupdate', $abbinfo->user_id);
 		}
     }
 
