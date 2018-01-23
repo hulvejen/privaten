@@ -50,7 +50,30 @@ class Handler extends ExceptionHandler
     {
 		if ($exception instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
             return redirect()->route('appointments.create');
-    }
+            }
+
+        $class = get_class($exception);
+
+        switch($class) {
+            case 'Illuminate\Auth\AuthenticationException':
+                $guard = array_get($exception->guards(), 0);
+                switch ($guard) {
+                    case 'admin':
+                        $login = 'admin.login';
+                        break;
+                    default:
+                        $login = 'login';
+                        break;
+                }
+
+                return redirect()->route($login);
+        }
+
         return parent::render($request, $exception);
     }
+
+
+
+
+
 }
