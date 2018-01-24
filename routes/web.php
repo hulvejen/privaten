@@ -48,7 +48,13 @@ Route::put('abbs/store/{id}', 'Abbcontroller@store')->name('abbsstore');
 Route::get('abbs/edit/{id}', 'AbbController@edit')->name('xyz');
 Route::get('abbs/{id}', 'AbbController@show')->name('myaccount');
 
-
+Route::prefix('admin')->group(function() {
+// Password reset routes
+    Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+});
 
 
 //Da home ikke kunne findes som navn flyttede jeg linien herned og så virkede name pludselig. Før stod den på linie 19.
