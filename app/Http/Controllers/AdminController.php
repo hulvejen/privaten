@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 
 use Auth;
+use App\User;
+use App\Abbinfo;
 
 class AdminController extends Controller
 {
@@ -25,9 +27,11 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	   
-		
-        return view('admin');
+    {
+
+        $users = User::with('abbinfo')->get();
+
+        return view('admin.index')->with('users',$users);
 		
     }
 	

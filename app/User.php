@@ -34,6 +34,10 @@ class User extends Authenticatable
     public function getAvatarAttribute($val)
     {
         return is_null($val) ? asset('images/avatar-placeholder.svg') : $val;
-    }			
-	
+    }
+
+    public function abbinfo(){
+        return $this->hasOne('App\Abbinfo','user_id', 'id');
+    }
+
 }
