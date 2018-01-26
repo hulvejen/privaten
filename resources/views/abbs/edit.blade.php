@@ -13,20 +13,20 @@
 					{{ csrf_field() }}
 					
 					<h2>Konto oplysninger:</h2>
-									
+
 					<p>										
 						
 					<label for="address">Adresse	</label>				
-					<input type="text" name="address" id="address" class="form-control " value="{{$users[0]->address}}"  >
+					<input type="text" name="address" id="address" class="form-control " value="{{$abbinfo[0]->address}}"  >
 
 					<label for="zipcode">Postnummer	</label>				
-					<input type="text" name="zipcode" id="zipcode" class="form-control " value="{{$users[0]->zipcode}}"  >	
+					<input type="text" name="zipcode" id="zipcode" class="form-control " value="{{$abbinfo[0]->zipcode}}"  >
 						
 					<label for="city">By	</label>				
-					<input type="text" name="city" id="city" class="form-control " value="{{$users[0]->city}}"  >
+					<input type="text" name="city" id="city" class="form-control " value="{{$abbinfo[0]->city}}"  >
 						
 					<label for="phone">Mobil  </label>				
-					<input type="text" name="phone" id="phone" class="form-control " value="{{$users[0]->phone}}" >
+					<input type="text" name="phone" id="phone" class="form-control " value="{{$abbinfo[0]->phone}}" >
 					
 					</p>
 					<p>

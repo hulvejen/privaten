@@ -118,9 +118,11 @@ class AbbController extends Controller
      */
     public function edit($id)
     {
-		$users = User::where('id', '=', Auth::id())->paginate(1);	
-		
-        return view('abbs.edit')->with('users',$users);
+		$users = User::where('id', '=', Auth::id())->paginate(1);
+        $abbinfo = Abbinfo::where('user_id', '=', $id)->get();
+
+
+        return view('abbs.edit')->with('users',$users)->with('abbinfo',$abbinfo);
     }
 
     /**

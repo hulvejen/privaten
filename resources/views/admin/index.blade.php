@@ -38,7 +38,7 @@
 										<td>Ja</td>
 										<td>4</td>
 										<td>{{$user->abbinfo->abb_date}}</td>
-										<td>30303030</td>
+										<td>{{$user->abbinfo->phone}}</td>
 									</tr>
 
 								@endforeach

@@ -25,7 +25,7 @@
 							</div>
 						
 						</div>
-					<a href="{{ route('xyz', Auth::user()->id) }}" class="btn btn-info" role="button">Ret</a>
+					<a href="{{ route('abbsedit', Auth::user()->id) }}" class="btn btn-info" role="button">Ret</a>
 				</div>
 				
 			</div>			
