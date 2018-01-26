@@ -11,15 +11,24 @@
                     </button>
 
 					<!-- Branding Image -->
-					@guest
+					@guest()
 					<a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Priværten') }}
                     </a>
 					@else
-					<a class="navbar-brand" href="{{ url('/home') }}">
-                        {{ config('app.name', 'Priværten') }}
-                    </a>
+
+						@if (Auth::guard('admin')->check())
+							<a class="navbar-brand" href="{{ url('/admin') }}">
+								{{ config('app.name', 'Priværten') }}
+							</a>
+						@else
+							<a class="navbar-brand" href="{{ url('/home') }}">
+								{{ config('app.name', 'Priværten') }}
+						@endif
+
 					@endguest
+
+
                  
 				</div>
 				<div class="collapse navbar-collapse" id="app-navbar-collapse">
