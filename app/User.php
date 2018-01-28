@@ -40,4 +40,8 @@ class User extends Authenticatable
         return $this->hasOne('App\Abbinfo','user_id', 'id');
     }
 
+    public function visit(){
+        return $this->hasOne('App\Visit','user_id', 'id');
+    }
+
 }

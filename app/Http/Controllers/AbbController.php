@@ -77,15 +77,7 @@ class AbbController extends Controller
 		}else{			
 			return redirect()->route('abbs.create');
 		}
-		
-		
-		//if successful we want to redirect
-		if($abbinfo->save()) {		
-			return redirect()->route('myaccount', $abbinfo->id);			
-		}else{			
-			return redirect()->route('abbs.create');
-		}
-				
+
 		
     }
 

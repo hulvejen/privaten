@@ -55,8 +55,9 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-									
-									<a href="{{ route('myaccount', Auth::user()->id) }}">Min konto</a>
+									@if (!Auth::guard('admin')->check())
+									    <a href="{{ route('myaccount', Auth::user()->id) }}">Min konto</a>
+									@endif
 
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 										{{ csrf_field() }}

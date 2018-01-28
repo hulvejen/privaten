@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        $users = User::with('abbinfo')->get();
+        $users = User::with('abbinfo','visit')->get();
 
         return view('admin.index')->with('users',$users);
 		
