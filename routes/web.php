@@ -43,8 +43,8 @@ Route::get('footerpages/contact','FooterController@contact')->name('footerpages.
 Route::get('footerpages/privacy','FooterController@privacy')->name('footerpages.privacy');
 
 
-Route::put('abbs/update/{id}', 'Abbcontroller@update')->name('abbsupdate');
-Route::put('abbs/store/{id}', 'Abbcontroller@store')->name('abbsstore');
+Route::put('abbs/update/{id}', 'AbbController@update')->name('abbsupdate');
+Route::put('abbs/store/{id}', 'AbbController@store')->name('abbsstore');
 Route::get('abbs/edit/{id}', 'AbbController@edit')->name('abbsedit');
 Route::get('abbs/{id}', 'AbbController@show')->name('myaccount');
 
@@ -55,6 +55,8 @@ Route::prefix('admin')->group(function() {
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
+
+Route::get('admin/show/{id}','AdminController@show')->name('admin.show');
 
 
 //Da home ikke kunne findes som navn flyttede jeg linien herned og så virkede name pludselig. Før stod den på linie 19.

@@ -29,17 +29,19 @@
 								</thead>
 								<tbody>
 								@foreach($users as $user)
-									<tr>
-										<td>{{$user->name}}</td>
-										<td>{{$user->abbinfo->city}}</td>
-										<td>{{$user->abbinfo->next_scheduled_date}}</td>
-										<td>NIP</td>
-										<td>Ja</td>
-										<td>Ja</td>
-										<td>4</td>
-										<td>{{$user->abbinfo->abb_date}}</td>
-										<td>{{$user->abbinfo->phone}}</td>
-									</tr>
+
+										<tr>
+												<td>
+													<a href=" {{ route('admin.show', $user->id)}}">{{$user->name}}</a></td>
+												<td>{{$user->abbinfo->city}}</td>
+												<td>{{$user->abbinfo->next_scheduled_date}}</td>
+												<td>NIP</td>
+												<td>Ja</td>
+												<td>Ja</td>
+												<td>4</td>
+												<td>{{$user->abbinfo->abb_date}}</td>
+												<td>{{$user->abbinfo->phone}}</td>
+										</tr>
 
 								@endforeach
 
