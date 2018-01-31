@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Abbinfo;
+use App\Schedule;
 
 class AdminController extends Controller
 {
@@ -68,9 +69,11 @@ class AdminController extends Controller
     {
         // Use the model to get 1 record from the database
         $user = User::findOrFail($id);
+        $abbinfo = AbbInfo::findOrFail($user_id);
+        $schedule = Schedule::findOrFail($user_id);
 
         // Show the view and pass the record to view
-        return view('admin.show')->with('user',$user);
+        return view('admin.show')->with('user',$user)->with('abbinfo',$abbinfo)->with('schedule',$schedule);
     }
 
     /**
