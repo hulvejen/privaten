@@ -67,10 +67,11 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+
         // Use the model to get 1 record from the database
         $user = User::findOrFail($id);
-        $abbinfo = AbbInfo::findOrFail($user_id);
-        $schedule = Schedule::findOrFail($user_id);
+        $abbinfo = Abbinfo::where('user_id', '=', $id)->get();
+        $schedule = Schedule::where('user_id', '=', $id)->get();
 
         // Show the view and pass the record to view
         return view('admin.show')->with('user',$user)->with('abbinfo',$abbinfo)->with('schedule',$schedule);
