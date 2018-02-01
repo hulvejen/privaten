@@ -30,6 +30,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
   Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
   Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
+
+  Route::get('/handy/login', 'Auth\HandyLoginController@showLoginForm')->name('handy.login');
+  Route::post('/handy/login', 'Auth\HandyLoginController@login')->name('handy.login.submit');
+  Route::get('/handy', 'HandyController@index')->name('handy.dashboard');
+
 });
 
 Route::resource('tasks','TaskController');
@@ -57,6 +62,18 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::get('admin/show/{id}','AdminController@show')->name('admin.show');
+
+
+Route::prefix('handy')->group(function() {
+// Password reset routes
+    Route::post('/password/email', 'Auth\HandyForgotPasswordController@sendResetLinkEmail')->name('handy.password.email');
+    Route::get('/password/reset', 'Auth\HandyForgotPasswordController@showLinkRequestForm')->name('handy.password.request');
+    Route::post('/password/reset', 'Auth\HandyResetPasswordController@reset');
+    Route::get('/password/reset/{token}', 'Auth\HandyResetPasswordController@showResetForm')->name('handy.password.reset');
+});
+
+Route::get('handy/show/{id}','HandyController@show')->name('handy.show');
+
 
 
 //Da home ikke kunne findes som navn flyttede jeg linien herned og så virkede name pludselig. Før stod den på linie 19.

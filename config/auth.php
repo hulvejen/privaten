@@ -56,6 +56,16 @@ return [
             'provider' => 'admins',
         ],
 
+        'handy' => [
+            'driver' => 'session',
+            'provider' => 'handys',
+        ],
+
+        'handy-api' => [
+            'driver' => 'token',
+            'provider' => 'handys',
+        ],
+
     ],
 
     /*
@@ -84,6 +94,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'handys' => [
+            'driver' => 'eloquent',
+            'model' => App\Handy::class,
         ],
 
         // 'users' => [
@@ -115,6 +130,11 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+        'handys' => [
+            'provider' => 'handys',
             'table' => 'password_resets',
             'expire' => 15,
         ],
