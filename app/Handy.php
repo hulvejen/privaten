@@ -40,7 +40,7 @@ class Handy extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new AdminResetPasswordNotification($token));
+        $this->notify(new HandyResetPasswordNotification($token));
     }
 
 }
