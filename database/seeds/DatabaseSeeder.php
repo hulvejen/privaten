@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
              UserSeeder::class,
              AbbinfoSeeder::class,
              AdminsSeeder::class,
-			 HandysSeeder::class,
+			 HandiesSeeder::class,
 			 HandymenSeeder::class,
              VisitsSeeder::class,
 

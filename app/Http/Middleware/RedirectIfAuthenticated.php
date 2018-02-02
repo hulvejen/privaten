@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use function GuzzleHttp\default_ca_bundle;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\Environment\Console;
 
 class RedirectIfAuthenticated
 {
@@ -18,12 +19,14 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        switch($guard){
+
+          switch($guard){
+
             case 'admin':
             if(Auth::guard($guard)->check()){
                 return redirect()->route('admin.dashboard');
             }
-            break;
+
 
             case 'handy':
                 if(Auth::guard($guard)->check()){
@@ -39,6 +42,6 @@ class RedirectIfAuthenticated
 
         }
 
-        return $next($request);
+         return $next($request);
     }
 }

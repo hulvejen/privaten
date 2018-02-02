@@ -33,7 +33,7 @@ class HandyForgotPasswordController extends Controller
 
     protected function broker()
     {
-        return Password::broker('handys');
+        return Password::broker('handies');
     }
 
     public function showLinkRequestForm()

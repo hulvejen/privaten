@@ -48,7 +48,7 @@ class HandyResetPasswordController extends Controller
 
     protected function broker()
     {
-        return Password::broker('handys');
+        return Password::broker('handies');
     }
 
     public function showResetForm(Request $request, $token = null)

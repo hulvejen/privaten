@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class HandysSeeder extends Seeder
+class HandiesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class HandysSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('handys')->insert([
+        DB::table('handies')->insert([
             'name' => 'handy',
             'email' => 'handy@handy.dk',
             'password' => Hash::make('password'),
