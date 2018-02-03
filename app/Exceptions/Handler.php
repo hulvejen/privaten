@@ -66,7 +66,6 @@ class Handler extends ExceptionHandler
                         $login = 'handy.login';
                         break;
 
-                        break;
                     default:
                         $login = 'login';
                         break;

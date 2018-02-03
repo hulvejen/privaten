@@ -74,7 +74,7 @@ Route::prefix('handy')->group(function() {
 
 });
 
-Route::get('handy/show/{id}','HandyController@show')->name('handy.show');
+
 
 
 
