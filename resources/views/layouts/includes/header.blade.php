@@ -21,6 +21,11 @@
 							<a class="navbar-brand" href="{{ url('/admin') }}">
 								{{ config('app.name', 'Priværten') }}
 							</a>
+						@elseif (Auth::guard('handy')->check())
+							<a class="navbar-brand" href="{{ url('/handy') }}">
+								{{ config('app.name', 'Priværten') }}
+							</a>
+
 						@else
 							<a class="navbar-brand" href="{{ url('/home') }}">
 								{{ config('app.name', 'Priværten') }}
@@ -55,8 +60,10 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-									@if (!Auth::guard('admin')->check())
+									@if (Auth::guard('web')->check())
 									    <a href="{{ route('myaccount', Auth::user()->id) }}">Min konto</a>
+									@elseif (Auth::guard('handy')->check())
+											<a href="{{ route('handy.show', Auth::user()->id) }}">Handy konto</a>
 									@endif
 
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -14,6 +14,7 @@ class VisitsSeeder extends Seeder
         DB::table('visits')->insert([
 			'handymen_id' => '1',
             'user_id' => '1',
+            'handy_id' => '1',
 		]);
     }
 }

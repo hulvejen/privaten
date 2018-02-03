@@ -10,39 +10,36 @@
 				<div class="panel-body">
 
 					<div class="container">
-						<h2>Table</h2>
+						<h2>Aftaler</h2>
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
 								<tr>
-									<th>Navn</th>
+									<th>Dato</th>
 									<th>By</th>
-									<th>Planlagt besøg</th>
-									<th>Sidste besøg</th>
+									<th>Adresse</th>
+									<th>Navn</th>
 									<th>Opgaver</th>
-									<th>Betalt</th>
-									<th>Timer rest</th>
-									<th>Abb måned</th>
+									<th>Antal timer</th>
+									<th>Email</th>
 									<th>Telefon</th>
 
 								</tr>
 								</thead>
 								<tbody>
-								@foreach($users as $user)
 
+								{{--Det er indgåede aftaler der er interessante--}}
+								@foreach($users as $user)
 										<tr>
-												<td>
-													<a href=" {{ route('handy.show', $user->id)}}">{{$user->name}}</a></td>
+												<td>27-03-2018</td>
 												<td>{{$user->abbinfo->city}}</td>
-												<td>{{$user->abbinfo->next_scheduled_date}}</td>
-												<td>NIP</td>
-												<td>Ja</td>
-												<td>Ja</td>
-												<td>4</td>
-												<td>{{$user->abbinfo->abb_date}}</td>
+												<td>{{$user->abbinfo->address}}</td>
+												<td>{{$user->name}}</td>
+												<td>{{$user->task}}</td>  {{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
+												<td>3</td>
+												<td>{{$user->email}}</td>
 												<td>{{$user->abbinfo->phone}}</td>
 										</tr>
-
 								@endforeach
 
 								</tbody>

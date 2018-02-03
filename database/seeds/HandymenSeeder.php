@@ -13,7 +13,11 @@ class HandymenSeeder extends Seeder
     public function run()
     {
         DB::table('handymen')->insert([
-			'name' => 'John Doe',
+            'handy_id' => '1',
+            'phone' => '30656565',
+            'address' => 'Håndværkervej 10',
+            'zipcode' => '9760',
+            'city' => 'Brovst',
 		]);
     }
 }

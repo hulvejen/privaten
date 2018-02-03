@@ -43,4 +43,12 @@ class Handy extends Authenticatable
         $this->notify(new HandyResetPasswordNotification($token));
     }
 
+    public function handymen(){
+        return $this->hasOne('App\Handyman','handy_id', 'id');
+    }
+
+    public function visit(){
+        return $this->hasOne('App\Visit','handy_id', 'id');
+    }
+
 }

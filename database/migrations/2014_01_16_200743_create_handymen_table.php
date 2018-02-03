@@ -16,15 +16,19 @@ class CreateHandymenTable extends Migration
         Schema::create('handymen', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-			
-			$table->string('name');
+
+            // Foreign key
+            $table->integer('handy_id')->unsigned();
+
 			$table->string('address')->nullable();
-			$table->string('zip')->nullable();
+			$table->string('zipcode')->nullable();
 			$table->string('city')->nullable();
 			
 			$table->string('phone')->nullable();
 			
 			$table->text('about')->nullable();
+
+            $table->foreign('handy_id')->references('id')->on('handies');
 			
         });
     }

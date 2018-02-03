@@ -70,6 +70,8 @@ Route::prefix('handy')->group(function() {
     Route::get('/password/reset', 'Auth\HandyForgotPasswordController@showLinkRequestForm')->name('handy.password.request');
     Route::post('/password/reset', 'Auth\HandyResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\HandyResetPasswordController@showResetForm')->name('handy.password.reset');
+    Route::get('/{id}', 'HandyController@show')->name('handy.show');
+
 });
 
 Route::get('handy/show/{id}','HandyController@show')->name('handy.show');

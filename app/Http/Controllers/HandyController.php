@@ -9,6 +9,8 @@ use Auth;
 use App\User;
 use App\Abbinfo;
 use App\Schedule;
+use App\Task;
+use App\Handy;
 
 class HandyController extends Controller
 {
@@ -30,8 +32,9 @@ class HandyController extends Controller
     public function index()
     {
 
-        $users = User::with('abbinfo','visit')->get();
+        $users = User::with('abbinfo','visit','task')->get();
 
+        /*Det er ikke users der er interessante*/
         return view('handy.index')->with('users',$users);
 		
     }
@@ -69,12 +72,10 @@ class HandyController extends Controller
     {
 
         // Use the model to get 1 record from the database
-        $user = User::findOrFail($id);
-        $abbinfo = Abbinfo::where('user_id', '=', $id)->get();
-        $schedule = Schedule::where('user_id', '=', $id)->get();
+        $handy = Handy::with('handymen','visit')->where('id',$id)->get();
 
         // Show the view and pass the record to view
-        return view('handy.show')->with('user',$user)->with('abbinfo',$abbinfo)->with('schedule',$schedule);
+        return view('handy.show')->with('handy',$handy);
     }
 
     /**

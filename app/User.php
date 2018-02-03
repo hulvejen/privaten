@@ -44,4 +44,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Visit','user_id', 'id');
     }
 
+    public function task(){
+        return $this->hasOne('App\Task','user_id', 'id');
+    }
+
+    public function schedule(){
+        return $this->hasOne('App\Schedule','user_id', 'id');
+    }
+
 }

@@ -18,6 +18,7 @@ class CreateVisitsTable extends Migration
 			// Foreign key
 			$table->integer('handymen_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('handy_id')->unsigned();
 			
 			
             $table->timestamps();
@@ -28,6 +29,7 @@ class CreateVisitsTable extends Migration
 						
 			$table->foreign('handymen_id')->references('id')->on('handymen');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('handy_id')->references('id')->on('handies');
 			
         });
     }
