@@ -8,16 +8,13 @@
 				<div class="col-md-9 "></div>
 				<div class="col-md-3 ">
 					<a href="{{ route('handy.dashboard') }}" class="btn btn-info " role="button">Mine</a>
-					<a href="{{ route('handy.showOpen',1) }}" class="btn btn-info btn-warning" role="button">Mulige</a>
-					<a href="{{ route('handy.showDone',1) }}" class="btn btn-info " role="button">Udførte</a>
+					<a href="{{ route('handy.showOpen',1) }}" class="btn btn-info " role="button">Mulige</a>
+					<a href="{{ route('tasks.create',1) }}" class="btn btn-info btn-warning" role="button">Udførte</a>
 				</div>
 
 				  <div class="panel-body">
 
-                      <div>Her skal vises kunder uden aftaler som vores handyman kan acceptere.</div>
-                      <div> Accepterede aftaler skal blokeres indtil aftale er indgået.</div>
-                      <div>Først herefter kan den ses under "Mine"</div>
-
+					Her skal vises tidligere udførte opgaver.
 
                   </div>
 

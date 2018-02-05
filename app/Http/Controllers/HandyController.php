@@ -94,6 +94,23 @@ class HandyController extends Controller
         return view('handy.showOpen')->with('handy',$handy);
     }
 
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showDone($id)
+    {
+
+        // Use the model to get 1 record from the database
+        $handy = Handy::with('handymen','visit')->where('id',$id)->get();
+
+        // Show the view and pass the record to view
+        return view('handy.showDone')->with('handy',$handy);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
