@@ -42,7 +42,7 @@
 												<td>{{$user->abbinfo->city}}</td>
 												<td>{{$user->abbinfo->address}}</td>
 												<td>{{$user->name}}</td>
-												<td>{{$user->task}}</td>  {{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
+												<td>{{$user->task->task}}</td>  {{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
 												<td>3</td>
 												<td>{{$user->email}}</td>
 												<td>{{$user->abbinfo->phone}}</td>
