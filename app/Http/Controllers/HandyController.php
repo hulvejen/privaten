@@ -32,7 +32,9 @@ class HandyController extends Controller
     public function index()
     {
 
-        $users = User::with('abbinfo','visit','task')->get();
+        $users = User::whereHas( 'visit', function ($query){
+            $query->where('handy_id', '=', '1');
+        })->get();
 
         /*Det er ikke users der er interessante*/
         return view('handy.index')->with('users',$users);
@@ -84,14 +86,14 @@ class HandyController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function showOpen($id)
+    public function showOpen()
     {
 
         // Use the model to get 1 record from the database
-        $handy = Handy::with('handymen','visit')->where('id',$id)->get();
+        $users = User::doesntHave('visit')->get();
 
         // Show the view and pass the record to view
-        return view('handy.showOpen')->with('handy',$handy);
+        return view('handy.showOpen')->with('users',$users);
     }
 
 

@@ -9,8 +9,8 @@
                 <div class="col-md-9 "></div>
                 <div class="col-md-3 ">
                     <a href="{{ route('handy.dashboard') }}" class="btn btn-info btn-warning" role="button">Mine</a>
-                    <a href="{{ route('handy.showOpen',1) }}" class="btn btn-info" role="button">Mulige</a>
-                    <a href="{{ route('handy.showDone',1) }}" class="btn btn-info" role="button">Udførte</a>
+                    <a href="{{ route('handy.showOpen') }}" class="btn btn-info" role="button">             Muligee</a>
+                    <a href="{{ route('handy.showDone',1) }}" class="btn btn-info" role="button">           Udførte</a>
                 </div>
 
 
@@ -44,8 +44,13 @@
 												<td>{{$user->abbinfo->city}}</td>
 												<td>{{$user->abbinfo->address}}</td>
 												<td>{{$user->name}}</td>
-												<td>{{substr($user->task->task,0,10)}}</td>  {{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
-												<td>3</td>
+												{{$task = ""}}
+												@if (count($user->task))
+													{{ $task = substr($user->task->task,0,10)}}
+													{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
+												@endif
+												<td>{{$task}}</td>
+											    <td>3</td>
 												<td>{{$user->email}}</td>
 												<td>{{$user->abbinfo->phone}}</td>
 										</tr>
