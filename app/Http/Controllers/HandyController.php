@@ -112,6 +112,8 @@ class HandyController extends Controller
 
         $abbinfo = Abbinfo::where('user_id',  '=',  $visits[0]->user_id)->get();
 
+
+
            // Show the view and pass the record to view
         return view('handy.showDone')->with('visits',$visits)->with('abbinfo',$abbinfo);
     }

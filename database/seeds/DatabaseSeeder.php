@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
              AdminsSeeder::class,
 			 HandymenSeeder::class,
              VisitsSeeder::class,
-
+             TaskSeeder::class,
 			 ]);		 
     }
 }
