@@ -9,7 +9,7 @@
                 <div class="col-md-9 "></div>
                 <div class="col-md-3 ">
                     <a href="{{ route('handy.dashboard') }}" class="btn btn-info btn-warning" role="button">Mine</a>
-                    <a href="{{ route('handy.showOpen') }}" class="btn btn-info" role="button">             Muligee</a>
+                    <a href="{{ route('handy.showOpen') }}" class="btn btn-info" role="button">             Mulige</a>
                     <a href="{{ route('handy.showDone',1) }}" class="btn btn-info" role="button">           Udførte</a>
                 </div>
 
