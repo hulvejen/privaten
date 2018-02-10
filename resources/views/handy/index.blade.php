@@ -16,7 +16,7 @@
 
 				<div class="panel-body">
 
-					<div class="container">
+					<div class="container-fluid">
 						<h2>Aftaler</h2>
 						<div class="table-responsive">
 							<table class="table">

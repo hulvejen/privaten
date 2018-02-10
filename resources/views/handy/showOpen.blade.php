@@ -14,7 +14,7 @@
 
 				<div class="panel-body">
 
-					<div class="container">
+					<div class="container-fluid">
 						<h2>Aftaler</h2>
 						<div class="table-responsive">
 							<table class="table">
@@ -37,7 +37,7 @@
 								{{--Det er indgåede aftaler der er interessante--}}
 								@foreach($users as $user)
 									<tr>
-										<td>{{$user->abbinfo->city}}</td>
+										<td><a href="{{ route('handy.dashboard') }}">{{$user->abbinfo->city}}</a></td>
 										<td>{{$user->abbinfo->zipcode}}</td>
 										<td>{{$user->abbinfo->next_scheduled_date}}</td>
 										<td></td>

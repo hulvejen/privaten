@@ -34,7 +34,7 @@ class HandyController extends Controller
     {
 
         $users = User::whereHas( 'visit', function ($query){
-            $query->where('handy_id', '=', '1');
+            $query->where('handy_id', '=', '1')->where('done', '=' , '0');
         })->get();
 
         /*Det er ikke users der er interessante*/
@@ -76,8 +76,7 @@ class HandyController extends Controller
 
         // Use the model to get 1 record from the database
         $handy = Handy::with('handymen','visit')->where('id',$id)->get();
-
-        // Show the view and pass the record to view
+               // Show the view and pass the record to view
         return view('handy.show')->with('handy',$handy);
     }
 
