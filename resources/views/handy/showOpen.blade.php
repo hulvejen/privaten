@@ -37,7 +37,7 @@
 								{{--Det er indgåede aftaler der er interessante--}}
 								@foreach($users as $user)
 									<tr>
-										<td><a href="{{ route('handy.dashboard') }}">{{$user->abbinfo->city}}</a></td>
+										<td><a href="{{ route('handy.editSingleOpen',$user->id) }}">{{$user->abbinfo->city}}</a></td> {{-- 1 skal ændres til rigtig kunde nr--}}
 										<td>{{$user->abbinfo->zipcode}}</td>
 										<td>{{$user->abbinfo->next_scheduled_date}}</td>
 										<td></td>

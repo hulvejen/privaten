@@ -31,6 +31,27 @@ class TaskSeeder extends Seeder
             'task' => 'Checke tag',
             'handy_id' => '1',
         ]);
+
+        DB::table('tasks')->insert([
+            'user_id' => '3',
+            'visit_id' => '1',
+            'task' => 'Rense tagrende',
+            'handy_id' => '1',
+        ]);
+
+        DB::table('tasks')->insert([
+            'user_id' => '3',
+            'visit_id' => '1',
+            'task' => 'Klippe græs',
+            'handy_id' => '1',
+        ]);
+
+        DB::table('tasks')->insert([
+            'user_id' => '4',
+            'visit_id' => '3',
+            'task' => 'Checke tag',
+            'handy_id' => '1',
+        ]);
     }
 }
 

@@ -22,7 +22,7 @@ class CreateTaskTable extends Migration
 			$table->string('task');
 			$table->string('image')->nullable();
 			
-			$table->boolean('done')->nullable();
+			$table->boolean('done')->default(false);
 			$table->string('handy_id')->nullable();
             $table->timestamps();
 			

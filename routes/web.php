@@ -73,7 +73,7 @@ Route::prefix('handy')->group(function() {
     Route::get('/showOpen', 'HandyController@showOpen')->name('handy.showOpen');
     Route::get('/show/{id}', 'HandyController@show')->name('handy.show');
     Route::get('/showDone/{id}', 'HandyController@showDone')->name('handy.showDone');
-
+    Route::get('/editSingleOpen/{id}', 'HandyController@editSingleOpen')->name('handy.editSingleOpen');
 });
 
 

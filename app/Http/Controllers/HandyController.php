@@ -123,6 +123,20 @@ class HandyController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+    public function editSingleOpen($id)
+    {
+        $user = User::with(  'abbinfo')->where('id', $id)->get();
+        $tasks = Task::where('user_id', '=',$id)->where('done', '=', 'false' )->get();
+
+        return view('handy.editSingleOpen')->with('user',$user)->with('tasks',$tasks);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function edit(User $user)
     {
         //
