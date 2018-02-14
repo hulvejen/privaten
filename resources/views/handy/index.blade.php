@@ -27,7 +27,7 @@
 									<th>By</th>
 									<th>Adresse</th>
 									<th>Navn</th>
-									<th>Opgaver</th>
+									<th>Aftalte opgaver</th>
 									<th>Antal timer</th>
 									<th>Email</th>
 									<th>Telefon</th>
@@ -37,22 +37,30 @@
 								<tbody>
 
 								{{--Det er indgåede aftaler der er interessante--}}
-								@foreach($users as $user)
+								@foreach($visits as $key => $visit)
 										<tr>
-												<td><a>27-03-2018</a></td>
+
+										    <td><a>27-03-2018 (hc)</a></td>
                                                 <td>8:00</td>
-												<td>{{$user->abbinfo->city}}</td>
-												<td>{{$user->abbinfo->address}}</td>
-												<td>{{$user->name}}</td>
-												{{$task = ""}}
-												@if (count($user->task))
-													{{ $task = substr($user->task->task,0,10)}}
-													{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
-												@endif
-												<td>{{$task}}</td>
-											    <td>3</td>
-												<td>{{$user->email}}</td>
-												<td>{{$user->abbinfo->phone}}</td>
+												<td>{{$abbinfos[$key]->city}}</td>
+												<td>{{$abbinfos[$key]->address}}</td>
+												<td>{{$visit->user->name}}</td>
+{{--
+												@if (count($tasks[$key]->task))
+													{{ $task = substr($tasks->task->task,0,10)}}
+													--}}{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}{{--
+												@endif--}}
+												<td>
+{{--                                                    @foreach($tasks[$key] as $task)
+                                                       <div>{{ substr($task->task,0,15)}}</div>
+                                                    @endforeach--}}
+
+                                                    <div>{{ substr($visit->agreement,0,15)}}</div>
+                                                </td>
+
+                                                <td>3 (hc)</td>
+												<td>{{$visit->user->email}}</td>
+												<td>{{$abbinfos[$key]->phone}}</td>
 										</tr>
 								@endforeach
 

@@ -33,15 +33,23 @@ class HandyController extends Controller
      */
     public function index()
     {
+         /*mangler handy id check*/
 
-
-        $users = User::whereHas( 'visit', function ($query){
+/*        $users = User::whereHas( 'visit', function ($query){
             $query->where('handy_id', '=', '1')->where('done', '=' , '0');
-        })->get();
+        })->get();*/
+
+        // Use the model to get 1 record from the database
+        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,'1')->where('done', '=', 0)->get();
+
+        foreach($visits as $visit){
+            $abbinfos[] = Abbinfo::where('user_id', '=' ,$visit->user_id )->first();
+            $tasks[]    = Task::where('user_id', '=', $visit->user_id )->get();
+        }
 
 
         /*Det er ikke users der er interessante*/
-        return view('handy.index')->with('users',$users);
+        return view('handy.index')->with('visits',$visits)->with('abbinfos', $abbinfos)->with('tasks',$tasks);
 		
     }
 
