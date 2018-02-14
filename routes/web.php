@@ -76,8 +76,9 @@ Route::prefix('handy')->group(function() {
     Route::get('/editSingleOpen/{id}', 'HandyController@editSingleOpen')->name('handy.editSingleOpen');
 });
 
-
-
+Route::prefix('visit')->group(function(){
+    Route::put('/store/{user}', 'VisitController@store')->name('visit.store');
+});
 
 
 //Da home ikke kunne findes som navn flyttede jeg linien herned og så virkede name pludselig. Før stod den på linie 19.

@@ -11,6 +11,7 @@ use App\Abbinfo;
 use App\Schedule;
 use App\Task;
 use App\Handy;
+use App\Handyman;
 use App\Visit;
 
 class HandyController extends Controller
@@ -33,9 +34,11 @@ class HandyController extends Controller
     public function index()
     {
 
+
         $users = User::whereHas( 'visit', function ($query){
             $query->where('handy_id', '=', '1')->where('done', '=' , '0');
         })->get();
+
 
         /*Det er ikke users der er interessante*/
         return view('handy.index')->with('users',$users);
@@ -126,9 +129,10 @@ class HandyController extends Controller
     public function editSingleOpen($id)
     {
         $user = User::with(  'abbinfo')->where('id', $id)->get();
-        $tasks = Task::where('user_id', '=',$id)->where('done', '=', 'false' )->get();
+        $tasks = Task::where('user_id', '=', $id )->where('done', '=', 'false' )->get();
+        $handyman = Handyman::where('handy_id', '=', Auth::id())->get();
 
-        return view('handy.editSingleOpen')->with('user',$user)->with('tasks',$tasks);
+        return view('handy.editSingleOpen')->with('user',$user)->with('tasks',$tasks)->with('handyman',$handyman);
     }
 
     /**

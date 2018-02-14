@@ -27,8 +27,7 @@
 									<th>Navn</th>
 									<th>Opgaver</th>
 									<th>Rest timer</th>
-									<th>Email</th>
-									<th>Telefon</th>
+
 
 								</tr>
 								</thead>
@@ -48,9 +47,8 @@
 											{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
 										@endif
 										<td>{{$task}}</td>
-										<td>3</td>
-										<td>{{$user->email}}</td>
-										<td>{{$user->abbinfo->phone}}</td>
+										<td>3 hc</td>
+
 									</tr>
 								@endforeach
 

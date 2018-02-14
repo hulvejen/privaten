@@ -23,8 +23,10 @@ class CreateVisitsTable extends Migration
 			
             $table->timestamps();
 			$table->text('jobcomment')->nullable();
+            $table->text('agreement')->nullable();
 			$table->date('visitdate')->nullable();
-			$table->boolean('done')->nullable();
+            $table->time('visittime')->nullable();
+			$table->boolean('done')->default(false);
 			
 						
 			$table->foreign('handymen_id')->references('id')->on('handymen');

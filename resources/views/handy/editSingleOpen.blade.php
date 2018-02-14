@@ -31,27 +31,45 @@
 					  </div>
 
                       <hr>
-                      <h3>Aftale</h3>
 
                       <div class="container-fluid">
-                          <div class="col-md-12 ">
-                              <table  style="border-spacing: 10px;">
-                                  <tbody>
-                                  <tr>
-                                      <td>Dato</td>
-                                      <td><input type="date"></td>
-                                      <td>Klokken</td>
-                                      <td> <input type="time"></td>
-                                  </tr>
-                                  <tr>
-                                      <td>Aftale</td>
-                                      <td colspan="3"> <input type="text"></td>
+                          <div class="col-md-6 ">
 
-                                  </tr>
-                                  </tbody>
-                              </table>
-                              <br>
-                              <button>Godkend aftale</button>
+
+
+                              <form action="{{ route('visit.store', $user[0]->id ) }}" enctype="multipart/form-data" method="POST" >
+
+                                  {{method_field('PUT')}}
+
+
+                                  {{ csrf_field() }}
+
+                                  <h2>Opret aftale:</h2>
+
+                                  <p>
+
+                                      <input type="hidden" name="handymanId" value= {{$handyman[0]->id}}>
+
+                                      <label for="date">Dato</label>
+                                      <input type="date" name="date" id="date" class="form-control "   >
+
+                                      <label for="time">Klokken</label>
+                                      <input type="time" name="time" id="time" class="form-control "  >
+
+                                      <label for="agreement">Aftale	</label>
+                                      <input type="agreement" name="agreement" id="agreement" class="form-control "  >
+
+
+                                  </p>
+                                  <p>
+                                      <input type="submit" class="btn btn-primary" value="Godkend" />
+
+                                  </p>
+
+                              </form>
+
+
+
 
                           </div>
                       </div>
