@@ -31,20 +31,21 @@
 
 								</tr>
 								</thead>
-								<tbody>
 
+								<tbody>
 								{{--Det er indgåede aftaler der er interessante--}}
 								@foreach($users as $user)
 									<tr>
 										<td><a href="{{ route('handy.editSingleOpen',$user->id) }}">{{$user->abbinfo->city}}</a></td> {{-- 1 skal ændres til rigtig kunde nr--}}
 										<td>{{$user->abbinfo->zipcode}}</td>
 										<td>{{$user->abbinfo->next_scheduled_date}}</td>
-										<td></td>
+										<td>8:00 (hc)</td>
 										<td>{{$user->name}}</td>
-										{{$task = ""}}
 										@if (count($user->task))
-											{{ $task = substr($user->task->task,0,10)}}
+											<?php $task = substr($user->task->task,0,10)?>
 											{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
+											@else
+											<?php $task = ''; ?>
 										@endif
 										<td>{{$task}}</td>
 										<td>3 hc</td>
