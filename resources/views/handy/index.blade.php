@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-12 ">
 			<div class="panel panel-default">
-				<div class="panel-heading">HANDY dashboard</div>
+				<div class="panel-heading">Mine aftaler</div>
                 <div class="col-md-9 "></div>
                 <div class="col-md-3 ">
                     <a href="{{ route('handy.dashboard') }}" class="btn btn-info btn-warning" role="button">Mine</a>
@@ -17,7 +17,7 @@
 				<div class="panel-body">
 
 					<div class="container-fluid">
-						<h2>Aftaler</h2>
+						<h2></h2>
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
@@ -41,20 +41,12 @@
 										<tr>
 
 										    <td><a>27-03-2018 (hc)</a></td>
-                                                <td>8:00</td>
+                                                <td>8:00 (hc)</td>
 												<td>{{$abbinfos[$key]->city}}</td>
 												<td>{{$abbinfos[$key]->address}}</td>
 												<td>{{$visit->user->name}}</td>
-{{--
-												@if (count($tasks[$key]->task))
-													{{ $task = substr($tasks->task->task,0,10)}}
-													--}}{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}{{--
-												@endif--}}
-												<td>
-{{--                                                    @foreach($tasks[$key] as $task)
-                                                       <div>{{ substr($task->task,0,15)}}</div>
-                                                    @endforeach--}}
 
+												<td>
                                                     <div>{{ substr($visit->agreement,0,15)}}</div>
                                                 </td>
 

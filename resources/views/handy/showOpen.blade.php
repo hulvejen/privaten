@@ -4,7 +4,7 @@
 		<div class="col-md-12 ">
 			<div class="panel panel-default">
 
-				<div class="panel-heading">HANDY Muligheder</div>
+				<div class="panel-heading">Mulige kunde opgaver</div>
 				<div class="col-md-9 "></div>
 				<div class="col-md-3 ">
 					<a href="{{ route('handy.dashboard') }}" class="btn btn-info " role="button">Mine</a>
@@ -15,7 +15,7 @@
 				<div class="panel-body">
 
 					<div class="container-fluid">
-						<h2>Aftaler</h2>
+						<h2></h2>
 						<div class="table-responsive">
 							<table class="table">
 								<thead>
