@@ -31,7 +31,6 @@
 									<th>Antal timer</th>
 									<th>Email</th>
 									<th>Telefon</th>
-
 								</tr>
 								</thead>
 								<tbody>
@@ -40,8 +39,8 @@
 								@foreach($visits as $key => $visit)
 										<tr>
 
-										    <td><a>27-03-2018 (hc)</a></td>
-                                                <td>8:00 (hc)</td>
+										    <td><a href="{{ route('visit.editMyVisit', $visit->id) }}">{{$visit->visitdate}}</a></td>
+                                                <td>{{substr($visit->visittime,0,5)}}</td>
 												<td>{{$abbinfos[$key]->city}}</td>
 												<td>{{$abbinfos[$key]->address}}</td>
 												<td>{{$visit->user->name}}</td>
@@ -60,7 +59,6 @@
 							</table>
 						</div>
 					</div>
-
 
 				</div>
 

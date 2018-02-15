@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Abbinfo;
 use App\Visit;
+use App\Handyman;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -96,9 +98,13 @@ class VisitController extends Controller
      * @param  \App\Visit  $visit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Visit $visit)
+    public function edit($id)
     {
-        //
+        $visit  = Visit::with( 'handy', 'user')->where('id', '=' ,$id)->first();
+        $abbinfo = Abbinfo::where('user_id', $visit->user_id)->first();
+
+        /*Det er ikke users der er interessante*/
+        return view('visits.editVisit')->with('visit',$visit)->with('abbinfo', $abbinfo);
     }
 
     /**
@@ -108,9 +114,29 @@ class VisitController extends Controller
      * @param  \App\Visit  $visit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Visit $visit)
+    public function update(Request $request, $id)
     {
-        //
+        // validate the form data
+        $this->validate($request,[
+            'date' => 'required|max:14',
+            'time' => 'required|max:8'
+        ]);
+
+        // process the data and submit it
+        $visit = Visit::find($id);
+        $visit->visitdate = $request->date;
+        $visit->visittime = $request->time;
+        $visit->agreement = $request->agreement;
+        $visit->jobcomment = null; //To be filled after the visit
+
+        $visit->save();
+
+        //if successful we want to redirect
+        if($visit->save()) {
+            return redirect()->route('handy.dashboard');
+        }else{
+            return redirect()->route('visit.create');
+        }
     }
 
     /**
