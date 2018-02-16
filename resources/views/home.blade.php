@@ -5,10 +5,20 @@
 	<div class="row">
 		<div class="col-md-12 ">
 			<div class="panel panel-default">
-								
-				@foreach($users as $user)
-				   <div class="panel-heading">Velkommen {{ $user->name }}  </div>
-				@endforeach
+
+
+				<div class="panel-heading">Velkommen {{ $users[0]->name }}  </div>
+
+				<div class="col-md-9 "></div>
+
+				<div class="col-md-3  text-right">
+					<a href="{{ route('overview') }}" class="btn btn-info btn-warning" role="button">             Opgaver</a>
+					<a href="{{ route('handy.showDone',1) }}" class="btn btn-info" role="button">     Besøg</a>
+				</div>
+
+				<div class="col-sm-12 ">
+					<h4>Næste aftale - {{ $abbinfo[0]->next_scheduled_date }} kl  </h4>
+				</div>
 
 				<div class="panel-body">
 					@if (session('status'))
@@ -16,12 +26,6 @@
 						{{ session('status') }}
 					</div>
 					@endif
-					<div class="row">
-						<div class="col-sm-12 ">
-							<h4>Næste aftale - {{ $abbinfo[0]->next_scheduled_date }} kl  </h4>
-						</div>
-					</div>
-					
 
 					<div class="row">
 						<div class="col-sm-6 ">							
@@ -29,34 +33,59 @@
 							<a href="{{ route('tasks.create') }}" class="btn btn-info" role="button">Ny Opgave</a>
 						</div>
 						<div class="col-sm-6 text-right">
-							<h3>Bedste aftale tidspunkter </h3>
+							{{--<h3>Bedste aftale tidspunkter </h3>
 							@if(count($schedules)>0)
 							   <a href="{{ route('schedules.edit', $schedules[0]->id) }}" class="btn btn-info" role="button">Ret Foretrukket aftaletidspunkt</a>
 							@else
 							   <a href="{{ route('schedules.create') }}" class="btn btn-info" role="button">Foretrukket aftaletidspunkt</a>
-							@endif
+							@endif--}}
 						</div>
 					</div>
 					<hr>
 					
 					<div class="row">
 						<div class="col-sm-12 ">
-							<h3>Seneste opgaver</h3>
-							
+							<h3>Opgaver</h3>
+
+							@php $i=0; @endphp
+
+
 							@foreach($tasks as $task)
-			
-								<div class="well">
-									<h4>Opdateret: {{ $task->updated_at}}</h4>
-									<h3>{{ $task->task}}</h3>									
-									<a href=" {{ route('tasks.show', $task->id)}}" class="btn btn-primary btn-sm">Se detaljer</a>
+								@php $i= $i+1; @endphp
+
+								@if($i==4)
+									<div class="row">
+										<div class="col-sm-12 ">
+								@endif
+
+								<div class="col-sm-4" >
+									<div>
+										<h4><a href=" {{ route('tasks.show', $task->id)}}" >{{ $task->task}}</a></h4>
+									</div>
+
+									<div>
+										@if ( isset($task->image))
+										   @php $path='storage/uploads/'.$task->image @endphp
+										@else
+										   @php $path='storage/uploads/handyman-tools.png' @endphp
+										@endif
+
+										<img src={{ asset($path) }} width="150px" class="img-responsive " />
+									</div>
+
 								</div>
-								
+
+
+								@if($i==4)
+										</div>
+									</div>
+								@endif
+
 							@endforeach
-														
-							<a href="{{ route('overview') }}" class="btn btn-info" role="button">Se Alle opgaver</a>
 
 						</div>
 					</div>
+
 					<hr>
 					
 					<div class="row">
@@ -67,15 +96,7 @@
 
 						</div>
 					</div>
-					<hr>
-					<div class="row">
-						<div class="col-sm-12 ">
 
-							<p class="aftaler"> Tidligere aftaler</p>
-							<p>21/16 2013 - Gennemgang af ejendom - 1 time
-
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

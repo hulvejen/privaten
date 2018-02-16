@@ -33,7 +33,7 @@ class HomeController extends Controller
 		
 		$users = User::where('id', '=', Auth::id())->paginate(1);
 		
-		$tasks     = Task::where('user_id','=', Auth::id())->paginate(2);	
+		$tasks     = Task::where('user_id','=', Auth::id())->get();
 		$schedules = Schedule::where('user_id','=', Auth::id())->paginate(1);
 		
 		$abbinfo   = Abbinfo::where('user_id','=', Auth::id())->paginate(1);
