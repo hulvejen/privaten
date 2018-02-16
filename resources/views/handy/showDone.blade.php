@@ -16,47 +16,50 @@
 
 					  <div class="container-fluid">
 						  <h2></h2>
-						  <div class="table-responsive">
-							  <table class="table">
-								  <thead>
-								  <tr>
-									  <th>Dato</th>
-									  <th>Kl</th>
-									  <th>By</th>
-									  <th>Adresse</th>
-									  <th>Navn</th>
-									  <th>Udførte opgaver</th>
-									  <th>Antal timer</th>
-									  <th>Email</th>
-									  <th>Telefon</th>
 
-								  </tr>
-								  </thead>
-								  <tbody>
-
-
-
-								  {{--Det er indgåede aftaler der er interessante--}}
-								  @foreach($visits as $visit)
-
+						  @if ( $noVisitsPlanned==1 )
+							  <h3>{{ 'Du har ingen udførte opgaver' }}</h3>
+						  @else
+							  <div class="table-responsive">
+								  <table class="table">
+									  <thead>
 									  <tr>
-										  <td><a>27-03-2018 (hc)</a></td>
-										  <td>8:00 (hc)</td>
-										  <td>{{$abbinfo[0]->city}}</td>
-										  <td>{{$abbinfo[0]->address}}</td>
-										  <td>{{$visit->user->name}}</td>
-										  <td>
-											  <div>{{ substr($visit->agreement,0,15)}}</div>
-										  </td>
-										  <td>3 (hc)</td>
-										  <td>{{$visit->user->email}}</td>
-										  <td>{{$visit->user->abbinfo->phone}}</td>
-									  </tr>
-								  @endforeach
+										  <th>Dato</th>
+										  <th>Kl</th>
+										  <th>By</th>
+										  <th>Adresse</th>
+										  <th>Navn</th>
+										  <th>Udførte opgaver</th>
+										  <th>Antal timer</th>
+										  <th>Email</th>
+										  <th>Telefon</th>
 
-								  </tbody>
-							  </table>
-						  </div>
+									  </tr>
+									  </thead>
+									  <tbody>
+
+									  {{--Det er indgåede aftaler der er interessante--}}
+									  @foreach($visits as $visit)
+
+										  <tr>
+											  <td><a>27-03-2018 (hc)</a></td>
+											  <td>8:00 (hc)</td>
+											  <td>{{$abbinfo[0]->city}}</td>
+											  <td>{{$abbinfo[0]->address}}</td>
+											  <td>{{$visit->user->name}}</td>
+											  <td>
+												  <div>{{ substr($visit->agreement,0,15)}}</div>
+											  </td>
+											  <td>3 (hc)</td>
+											  <td>{{$visit->user->email}}</td>
+											  <td>{{$visit->user->abbinfo->phone}}</td>
+										  </tr>
+									  @endforeach
+
+									  </tbody>
+								  </table>
+							  </div>
+						  @endif
 					  </div>
 
 

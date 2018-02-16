@@ -17,47 +17,53 @@
 				<div class="panel-body">
 
 					<div class="container-fluid">
+
 						<h2></h2>
-						<div class="table-responsive">
-							<table class="table">
-								<thead>
-								<tr>
-									<th>Dato</th>
-                                    <th>Kl</th>
-									<th>By</th>
-									<th>Adresse</th>
-									<th>Navn</th>
-									<th>Aftalte opgaver</th>
-									<th>Antal timer</th>
-									<th>Email</th>
-									<th>Telefon</th>
-								</tr>
-								</thead>
-								<tbody>
+						@if ( $noVisitsPlanned==1 )
+							<h3>{{ 'Du har ingen aftaler der venter' }}</h3>
+						@else
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+									<tr>
+										<th>Dato</th>
+										<th>Kl</th>
+										<th>By</th>
+										<th>Adresse</th>
+										<th>Navn</th>
+										<th>Aftalte opgaver</th>
+										<th>Antal timer</th>
+										<th>Email</th>
+										<th>Telefon</th>
+									</tr>
+									</thead>
+									<tbody>
 
-								{{--Det er indgåede aftaler der er interessante--}}
-								@foreach($visits as $key => $visit)
-										<tr>
+									{{--Det er indgåede aftaler der er interessante--}}
+									@foreach($visits as $key => $visit)
+											<tr>
 
-										    <td><a href="{{ route('visit.editMyVisit', $visit->id) }}">{{$visit->visitdate}}</a></td>
-                                                <td>{{substr($visit->visittime,0,5)}}</td>
-												<td>{{$abbinfos[$key]->city}}</td>
-												<td>{{$abbinfos[$key]->address}}</td>
-												<td>{{$visit->user->name}}</td>
+												<td><a href="{{ route('visit.editMyVisit', $visit->id) }}">{{$visit->visitdate}}</a></td>
+													<td>{{substr($visit->visittime,0,5)}}</td>
+													<td>{{$abbinfos[$key]->city}}</td>
+													<td>{{$abbinfos[$key]->address}}</td>
+													<td>{{$visit->user->name}}</td>
 
-												<td>
-                                                    <div>{{ substr($visit->agreement,0,15)}}</div>
-                                                </td>
+													<td>
+														<div>{{ substr($visit->agreement,0,15)}}</div>
+													</td>
 
-                                                <td>3 (hc)</td>
-												<td>{{$visit->user->email}}</td>
-												<td>{{$abbinfos[$key]->phone}}</td>
-										</tr>
-								@endforeach
+													<td>3 (hc)</td>
+													<td>{{$visit->user->email}}</td>
+													<td>{{$abbinfos[$key]->phone}}</td>
+											</tr>
+									@endforeach
 
-								</tbody>
-							</table>
-						</div>
+									</tbody>
+								</table>
+							</div>
+						@endif
+
 					</div>
 
 				</div>

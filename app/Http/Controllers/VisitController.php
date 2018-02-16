@@ -117,17 +117,25 @@ class VisitController extends Controller
     public function update(Request $request, $id)
     {
         // validate the form data
-        $this->validate($request,[
-            'date' => 'required|max:14',
-            'time' => 'required|max:8'
-        ]);
+
+        if(isset($request->date)) {
+            $this->validate($request, [
+                'date' => 'required|max:14',
+                'time' => 'required|max:8'
+            ]);
+        }
 
         // process the data and submit it
         $visit = Visit::find($id);
-        $visit->visitdate = $request->date;
-        $visit->visittime = $request->time;
-        $visit->agreement = $request->agreement;
-        $visit->jobcomment = null; //To be filled after the visit
+
+        if(isset($request->date)) {
+            $visit->visitdate = $request->date;
+            $visit->visittime = $request->time;
+            $visit->agreement = $request->agreement;
+        }else {
+            $visit->jobcomment = $request->jobcomment; //To be filled after the visit
+            $visit->done = true;
+        }
 
         $visit->save();
 
@@ -145,8 +153,11 @@ class VisitController extends Controller
      * @param  \App\Visit  $visit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Visit $visit)
+    public function destroy($id)
     {
-        //
+        $visit = Visit::find($id);
+        $visit->delete();
+
+        return redirect()->route('handy.dashboard');
     }
 }

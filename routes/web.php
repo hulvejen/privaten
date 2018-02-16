@@ -80,6 +80,7 @@ Route::prefix('visit')->group(function(){
     Route::put('/store/{user}', 'VisitController@store')->name('visit.store');
     Route::put('/update/{id}', 'VisitController@update')->name('visit.update');
     Route::get('/editMyVisit/{id}', 'VisitController@edit')->name('visit.editMyVisit');
+    Route::get('/destroy/{id}', 'VisitController@destroy')->name('visit.destroy');
 });
 
 

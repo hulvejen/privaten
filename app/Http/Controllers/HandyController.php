@@ -47,10 +47,16 @@ class HandyController extends Controller
             $tasks[]    = Task::where('user_id', '=', $visit->user_id )->get();
         }
 
+        $noVisitsPlanned=false;
 
-        /*Det er ikke users der er interessante*/
-        return view('handy.index')->with('visits',$visits)->with('abbinfos', $abbinfos)->with('tasks',$tasks);
-		
+        if (count($visits)===0) {
+            $noVisitsPlanned=true;
+            $abbinfos = 0; //fordi man kan i PHP
+            $tasks = 0;
+        }
+
+        return view('handy.index')->with('visits', $visits)->with('abbinfos', $abbinfos)->with('tasks', $tasks)->with('noVisitsPlanned', $noVisitsPlanned);
+
     }
 
 
@@ -118,14 +124,19 @@ class HandyController extends Controller
     {
 
         // Use the model to get 1 record from the database
-        $visits = Visit::with( 'handy', 'user')->where('id', $id)->where('done', 1)->get();
+        $visits = Visit::with( 'handy', 'user')->where('handy_id', $id)->where('done', 1)->get();
 
-        $abbinfo = Abbinfo::where('user_id',  '=',  $visits[0]->user_id)->get();
+        $noVisitsPlanned=false;
 
+        if (count($visits)===0) {
+            $noVisitsPlanned=true;
+            $abbinfo = 0; //fordi man kan i PHP
+        }else {
+            $abbinfo = Abbinfo::where('user_id', '=', $visits[0]->user_id)->get();
+        }
 
-
-           // Show the view and pass the record to view
-        return view('handy.showDone')->with('visits',$visits)->with('abbinfo',$abbinfo);
+             // Show the view and pass the record to view
+        return view('handy.showDone')->with('visits',$visits)->with('abbinfo',$abbinfo)->with('noVisitsPlanned', $noVisitsPlanned);
     }
 
     /**

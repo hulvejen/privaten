@@ -35,13 +35,12 @@
                       <div class="container-fluid">
                           <div class="col-md-6 ">
 
+                              <h2>Ret aftale:</h2>
                               <form action="{{ route('visit.update', $visit->id) }}" enctype="multipart/form-data" method="POST" >
 
                                   {{method_field('PUT')}}
 
                                   {{ csrf_field() }}
-
-                                  <h2>Ret aftale:</h2>
 
                                   <p>
                                       <label for="date">Dato</label>
@@ -51,7 +50,7 @@
                                       <input type="time" name="time" id="time" class="form-control" value={{ $visit->visittime }} >
 
                                       <label for="agreement">Aftale	</label>
-                                      <input type="agreement" name="agreement" id="agreement" class="form-control" value={{$visit->agreement}} >
+                                      <input type="text" name="agreement" id="agreement" class="form-control" value={{$visit->agreement}} >
 
 
                                   </p>
@@ -65,8 +64,38 @@
 
 
 
+                          </div>
+
+                          <div class="col-md-6 ">
+
+                              <div>
+                              <h2>Afslut aftale:</h2>
+                                  <form action="{{ route('visit.update', $visit->id) }}" enctype="multipart/form-data" method="POST" >
+                                      {{method_field('PUT')}}
+                                      {{ csrf_field() }}
+
+                                      <p>
+                                          <label for="jobcomment">Kommentar til opgave -Kan ses af kunden.	</label>
+                                          <input type="text" name="jobcomment" id="jobcomment" class="form-control"   >
+                                      </p>
+
+                                      <p>
+                                          <input type="submit" class="btn btn-primary btn-warning" value="Afslut" />
+                                      </p>
+
+
+                                  </form>
+                              </div>
+
+                              <div>
+                              <h2>Slet aftale:</h2>
+                              <div>En aftale må først slettes <i>efter</i> det er aftalt med kunden.</div>
+                              <a href="{{ route('visit.destroy', $visit->id) }}" class="btn btn-info btn-danger" role="button">! Slet aftale !</a>
+                              </div>
 
                           </div>
+
+
                       </div>
 
 
