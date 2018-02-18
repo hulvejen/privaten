@@ -29,7 +29,7 @@ class TaskController extends Controller
     public function index()
     {
     	//Go to the model and get a group of models
-		$tasks = Task::where('user_id','=', Auth::id())->paginate(3);  //Use Task::all() if you wants to get all at once. Then remove $tasks->links() as it will not work with all.
+		$tasks = Task::where('user_id','=', Auth::id())->where('done', '=', true)->paginate(2);  //Use Task::all() if you wants to get all at once. Then remove $tasks->links() as it will not work with all.
 		
 		//return the view, and pass in the group of records to loop through
 		return view('tasks.index')->with('tasks',$tasks);
@@ -121,7 +121,27 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $task = Task::find($id);
+
+        if($request->done === 'on')
+            $task->done = true;
+        else
+            $task->done = false;
+
+
+        $task->task = $request->task;
+
+
+        $task->save();
+
+        //if successful we want to redirect
+        if($task->save()) {
+            return redirect()->route('home');
+        }else{
+            return redirect()->route('task.show');
+        }
+
     }
 
     /**

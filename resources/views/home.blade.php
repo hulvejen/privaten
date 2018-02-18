@@ -12,7 +12,7 @@
 				<div class="col-md-9 "></div>
 
 				<div class="col-md-3  text-right">
-					<a href="{{ route('overview') }}" class="btn btn-info btn-warning" role="button">             Opgaver</a>
+					<a href="{{ route('overview') }}" class="btn btn-info btn-warning" role="button"> Opgaver løst</a>
 					<a href="{{ route('handy.showDone',1) }}" class="btn btn-info" role="button">     Besøg</a>
 				</div>
 
@@ -65,12 +65,15 @@
 
 									<div>
 										@if ( isset($task->image))
-										   @php $path='storage/uploads/'.$task->image @endphp
+										   @php $path='storage/uploads/'.$task->image;
+										   $with = '150px'; @endphp
 										@else
-										   @php $path='storage/uploads/handyman-tools.png' @endphp
+										   @php $path='storage/uploads/handyman-tools.png';
+										   $with = '120px'; @endphp
 										@endif
 
-										<img src={{ asset($path) }} width="150px" class="img-responsive " />
+										<img src={{ asset($path) }} width= @php $with @endphp class="img-responsive " />
+
 									</div>
 
 								</div>

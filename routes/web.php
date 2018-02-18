@@ -39,6 +39,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
 Route::resource('tasks','TaskController');
 Route::get('tasks', 'TaskController@index')->name('overview');
+Route::put('tasks/update/{id}', 'TaskController@update')->name('task.update');
 
 Route::resource('schedules','ScheduleController');
 Route::put('schedules','ScheduleController@update');

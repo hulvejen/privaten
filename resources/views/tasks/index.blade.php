@@ -10,15 +10,22 @@
 				@foreach($tasks as $task)
 				
 					<!--First create a storage link by typing in: php artisan storage:link -->
-					@php $path='storage/uploads/'.$task->image @endphp 
-				
+
 					<div class="well">
 						<h4>Opdateret: {{ $task->updated_at}}</h4>
 						<h3>{{ $task->task}}</h3>
-						
-						<img src={{ asset($path) }} height="150px" class="img-responsive center-block" />
-	
-						<a href=" {{ route('tasks.show', $task->id)}}" class="btn btn-primary btn-sm">View Details</a>
+
+						@if ( isset($task->image))
+							@php $path='storage/uploads/'.$task->image;
+										   $with = '150px'; @endphp
+						@else
+							@php $path='storage/uploads/handyman-tools.png';
+										   $with = '120px'; @endphp
+						@endif
+
+						<img src={{ asset($path) }} width= @php $with @endphp class="img-responsive  center-block" />
+
+
 					</div>
 				    
 				@endforeach

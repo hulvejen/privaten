@@ -25,12 +25,12 @@
 				<div class="col-md-6 ">
 					<h3>Opgave beskrivele</h3>
 
-					<form action="{{ route('overview') }}" enctype="multipart/form-data" method="POST" > ////// SKAL RETTES SÅ DATA OPDATERES   /////
-						{{method_field('POST')}}
+					<form action="{{ route('task.update',$task->id ) }}" enctype="multipart/form-data" method="POST" >
+						{{method_field('PUT')}}
 						{{ csrf_field() }}
 
 						<p>
-							<label for="task">Kommentar til opgave -Kan ses af kunden.	</label>
+							<label for="task">Opgavebeskrivelse</label>
 							<input type="text" name="task" id="task" class="form-control" value="{{ $task->task}}"  >
 						</p>
 						<p>
