@@ -12,8 +12,8 @@
 				<div class="col-md-9 "></div>
 
 				<div class="col-md-3  text-right">
-					<a href="{{ route('overview') }}" class="btn btn-info btn-warning" role="button"> Opgaver løst</a>
-					<a href="{{ route('handy.showDone',1) }}" class="btn btn-info" role="button">     Besøg</a>
+					<a href="{{ route('task.overview') }}" class="btn btn-info btn-warning" role="button"> Opgaver løst</a>
+					<a href="{{ route('task.oldvisits', $users[0]->id) }}" class="btn btn-info" role="button">     Besøg</a>
 				</div>
 
 				<div class="col-sm-12 ">

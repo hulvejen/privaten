@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
 use App\Task;
+use App\Visit;
 use Auth;
 
 class TaskController extends Controller
@@ -20,6 +21,8 @@ class TaskController extends Controller
     {
         $this->middleware('auth');
     }
+
+
 	
     /**
      * Display a listing of the resource.
@@ -154,4 +157,15 @@ class TaskController extends Controller
     {
         //
     }
+
+
+    public function oldvisits($id){
+
+        $visits = Visit::where('user_id' , '=', $id)->where('done', '=', 1)->get();
+
+        return $visits;
+
+    }
+
+
 }

@@ -34,12 +34,15 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
   Route::get('/handy/login', 'Auth\HandyLoginController@showLoginForm')->name('handy.login');
   Route::post('/handy/login', 'Auth\HandyLoginController@login')->name('handy.login.submit');
   Route::get('/handy', 'HandyController@index')->name('handy.dashboard');
-
 });
 
-Route::resource('tasks','TaskController');
-Route::get('tasks', 'TaskController@index')->name('overview');
+
+
+Route::get('tasks/oldvisits/{id}', 'TaskController@oldvisits')->name('task.oldvisits');
+Route::get('tasks/overview', 'TaskController@index')->name('task.overview');
 Route::put('tasks/update/{id}', 'TaskController@update')->name('task.update');
+Route::resource('tasks','TaskController');
+
 
 Route::resource('schedules','ScheduleController');
 Route::put('schedules','ScheduleController@update');
