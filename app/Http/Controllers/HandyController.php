@@ -35,7 +35,7 @@ class HandyController extends Controller
     {
 
         // Use the model to get 1 record from the database
-        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,3)->where('done', '=', 0)->get();
+        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,Auth::id())->where('done', '=', 0)->get();
 
         foreach($visits as $visit){
             $abbinfos[] = Abbinfo::where('user_id', '=' ,$visit->user_id )->first();
