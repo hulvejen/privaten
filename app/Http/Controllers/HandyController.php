@@ -33,14 +33,9 @@ class HandyController extends Controller
      */
     public function index()
     {
-         /*mangler handy id check*/
-
-/*        $users = User::whereHas( 'visit', function ($query){
-            $query->where('handy_id', '=', '1')->where('done', '=' , '0');
-        })->get();*/
 
         // Use the model to get 1 record from the database
-        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,'1')->where('done', '=', 0)->get();
+        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,3)->where('done', '=', 0)->get();
 
         foreach($visits as $visit){
             $abbinfos[] = Abbinfo::where('user_id', '=' ,$visit->user_id )->first();
@@ -150,6 +145,8 @@ class HandyController extends Controller
         $user = User::with(  'abbinfo')->where('id', $id)->get();
         $tasks = Task::where('user_id', '=', $id )->where('done', '=', 'false' )->get();
         $handyman = Handyman::where('handy_id', '=', Auth::id())->get();
+
+
 
         return view('handy.editSingleOpen')->with('user',$user)->with('tasks',$tasks)->with('handyman',$handyman);
     }

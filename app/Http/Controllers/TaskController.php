@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 
 use App\Task;
 use App\Visit;
+use App\Handyman;
 use Auth;
 
 class TaskController extends Controller
@@ -161,9 +162,10 @@ class TaskController extends Controller
 
     public function oldvisits($id){
 
-        $visits = Visit::where('user_id' , '=', $id)->where('done', '=', 1)->get();
+        $visits = Visit::with('handy')->where('user_id' , '=', $id)->where('done', '=', 1)->get();
 
-        return $visits;
+
+        return view('tasks.oldvisits')->with('visits',$visits);
 
     }
 
