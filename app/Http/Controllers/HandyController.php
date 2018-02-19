@@ -83,11 +83,11 @@ class HandyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
 
         // Use the model to get 1 record from the database
-        $handy = Handy::with('handymen','visit')->where('id',$id)->get();
+        $handy = Handy::with('handymen','visit')->where('id',Auth::id())->get();
                // Show the view and pass the record to view
         return view('handy.show')->with('handy',$handy);
     }
@@ -115,11 +115,11 @@ class HandyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDone($id)
+    public function showDone()
     {
 
         // Use the model to get 1 record from the database
-        $visits = Visit::with( 'handy', 'user')->where('handy_id', $id)->where('done', 1)->get();
+        $visits = Visit::with( 'handy', 'user')->where('handy_id', Auth::id())->where('done', 1)->get();
 
         $noVisitsPlanned=false;
 
@@ -129,7 +129,7 @@ class HandyController extends Controller
         }else {
             $abbinfo = Abbinfo::where('user_id', '=', $visits[0]->user_id)->get();
         }
-
+        
              // Show the view and pass the record to view
         return view('handy.showDone')->with('visits',$visits)->with('abbinfo',$abbinfo)->with('noVisitsPlanned', $noVisitsPlanned);
     }
