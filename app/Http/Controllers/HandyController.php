@@ -34,14 +34,9 @@ class HandyController extends Controller
      */
     public function index()
     {
-         /*mangler handy id check*/
-
-/*        $users = User::whereHas( 'visit', function ($query){
-            $query->where('handy_id', '=', '1')->where('done', '=' , '0');
-        })->get();*/
 
         // Use the model to get 1 record from the database
-        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,'1')->where('done', '=', 0)->get();
+        $visits  = Visit::with( 'handy', 'user')->where('handy_id', '=' ,Auth::id())->where('done', '=', 0)->get();
 
         foreach($visits as $visit){
             $abbinfos[] = Abbinfo::where('user_id', '=' ,$visit->user_id )->first();
@@ -89,11 +84,11 @@ class HandyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
 
         // Use the model to get 1 record from the database
-        $handy = Handy::with('handymen','visit')->where('id',$id)->get();
+        $handy = Handy::with('handymen','visit')->where('id',Auth::id())->get();
                // Show the view and pass the record to view
         return view('handy.show')->with('handy',$handy);
     }
@@ -144,11 +139,11 @@ class HandyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDone($id)
+    public function showDone()
     {
 
         // Use the model to get 1 record from the database
-        $visits = Visit::with( 'handy', 'user')->where('handy_id', $id)->where('done', 1)->get();
+        $visits = Visit::with( 'handy', 'user')->where('handy_id', Auth::id())->where('done', 1)->get();
 
         $noVisitsPlanned=false;
 
@@ -158,7 +153,7 @@ class HandyController extends Controller
         }else {
             $abbinfo = Abbinfo::where('user_id', '=', $visits[0]->user_id)->get();
         }
-
+        
              // Show the view and pass the record to view
         return view('handy.showDone')->with('visits',$visits)->with('abbinfo',$abbinfo)->with('noVisitsPlanned', $noVisitsPlanned);
     }
@@ -174,6 +169,8 @@ class HandyController extends Controller
         $user = User::with(  'abbinfo')->where('id', $id)->get();
         $tasks = Task::where('user_id', '=', $id )->where('done', '=', 'false' )->get();
         $handyman = Handyman::where('handy_id', '=', Auth::id())->get();
+
+
 
         return view('handy.editSingleOpen')->with('user',$user)->with('tasks',$tasks)->with('handyman',$handyman);
     }

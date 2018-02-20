@@ -27,6 +27,8 @@ class CreateVisitsTable extends Migration
 			$table->date('visitdate')->nullable();
             $table->time('visittime')->nullable();
 			$table->boolean('done')->default(false);
+
+            $table->integer('tidbrugt')->default(0);
 			
 						
 			$table->foreign('handymen_id')->references('id')->on('handymen');

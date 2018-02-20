@@ -42,9 +42,9 @@ class VisitsSeeder extends Seeder
         ]);
 
         DB::table('visits')->insert([
-            'handymen_id' => '1',
+            'handymen_id' => '2',
             'user_id' => '1',
-            'handy_id' => '1',
+            'handy_id' => '2',
             'agreement' => 'Støvsuge',
             'visitdate' => '2017_12_04',
             'visittime' => '07:30',

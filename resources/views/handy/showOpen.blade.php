@@ -9,7 +9,7 @@
 				<div class="col-md-3 ">
 					<a href="{{ route('handy.dashboard') }}" class="btn btn-info " role="button">Mine</a>
 					<a href="{{ route('handy.showOpen') }}" class="btn btn-info btn-warning" role="button">Mulige</a>
-					<a href="{{ route('handy.showDone',1) }}" class="btn btn-info " role="button">Udførte</a>
+					<a href="{{ route('handy.showDone') }}" class="btn btn-info " role="button">Udførte</a>
 				</div>
 
 				<div class="panel-body">

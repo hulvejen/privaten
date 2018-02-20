@@ -75,8 +75,8 @@ Route::prefix('handy')->group(function() {
     Route::post('/password/reset', 'Auth\HandyResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'Auth\HandyResetPasswordController@showResetForm')->name('handy.password.reset');
     Route::get('/showOpen', 'HandyController@showOpen')->name('handy.showOpen');
-    Route::get('/show/{id}', 'HandyController@show')->name('handy.show');
-    Route::get('/showDone/{id}', 'HandyController@showDone')->name('handy.showDone');
+    Route::get('/show', 'HandyController@show')->name('handy.show');
+    Route::get('/showDone', 'HandyController@showDone')->name('handy.showDone');
     Route::get('/editSingleOpen/{id}', 'HandyController@editSingleOpen')->name('handy.editSingleOpen');
 });
 
