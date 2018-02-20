@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -105,12 +106,35 @@ class HandyController extends Controller
     */
     public function showOpen()
     {
-
         // Use the model to get 1 record from the database
         $users = User::doesntHave('visit')->get();
+        $usrs  = User::with( 'task')->leftJoin('visits', 'users.id','=', 'user_id')
+                 ->leftjoin('abbinfos', 'abbinfos.user_id', '=', 'users.id')->get();
+
+
+        foreach ($usrs as $key => $usr) {
+            if ($usr->done == 0) {
+                foreach ($usrs as $rmkey => $rmuser) {
+                    if($rmuser->email == $usr->email){
+                        $usrs->pull($rmkey);
+                    }
+                }
+            }
+
+            if ($usr->done == 1) {
+                $notfirst = 0;
+                foreach ($usrs as $rmkey => $rmuser) {
+                    if($rmuser->email == $usr->email && $notfirst){
+                        $usrs->pull($rmkey);
+                    }
+                    $notfirst=1;
+                }
+            }
+
+        }
 
         // Show the view and pass the record to view
-        return view('handy.showOpen')->with('users',$users);
+        return view('handy.showOpen')->with('users',$users)->with('usrs',$usrs);
     }
 
 

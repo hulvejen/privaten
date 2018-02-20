@@ -53,6 +53,26 @@
 									</tr>
 								@endforeach
 
+								@foreach($usrs as $usr)
+
+									<tr>
+										<td><a href="{{ route('handy.editSingleOpen',$usr->id) }}">{{$usr->abbinfo->city}}</a></td>
+										<td>{{$usr->abbinfo->zipcode}};</td>
+										<td>{{$usr->abbinfo->next_scheduled_date}};</td>
+										<td>8:00 hc</td>
+										<td>{{$usr->name}};</td>
+										@if (count($usr->task))
+                                            <?php $task = substr($usr->task->task,0,10)?>
+											{{--Skal rettes til så det er et link der peger på alle uafsluttede task.--}}
+										@else
+                                            <?php $task = ''; ?>
+										@endif
+										<td>{{$task}}</td>
+										<td>3 hc</td>
+									</tr>
+
+								@endforeach
+
 								</tbody>
 							</table>
 						</div>
