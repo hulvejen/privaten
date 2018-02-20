@@ -122,7 +122,8 @@ class HandyController extends Controller
                     if($rmuser->email == $usr->email && $notfirst){
                         $usrs->pull($rmkey);
                     }
-                    $notfirst=1;
+                    if($rmuser->email == $usr->email)
+                       $notfirst=1;
                 }
             }
 
